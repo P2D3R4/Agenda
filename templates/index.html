@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+</head>
+<body>
+  <div>
+    <h1>Todo List</h1>
+    <form action="/create" method="POST">
+      <input name="name" placeholder="Nome">
+      <input name="email" placeholder="E-mail">
+      <input name="phone" placeholder="Telefone">
+      <button type="submit">
+        Adicionar
+      </button>
+    </form>
+    <ul>
+      {% for todo in todos %}
+        <li>
+          <form action="/update/{{todo['id']}}"
+          method="POST">
+            
+            <input name="name" value="{{todo['name']}}">
+            <input name="email" value="{{todo['email']}}">
+            <input name="phone" value="{{todo['phone']}}">
+            <button type="submit">
+              Editar
+            </button>
+            <a href="/delete/{{todo['id']}}">
+              ❌
+            </a>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html>
